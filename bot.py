@@ -1,5 +1,9 @@
 import asyncio
 import logging
+import os
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
 from aiogram import Bot, Dispatcher
 from config import settings
 from middlewares import LoggingMiddleware
@@ -10,15 +14,27 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
+class DummyHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+
+def start_dummy_server():
+    port = int(os.environ.get("PORT", 10000))
+    server = HTTPServer(("0.0.0.0", port), DummyHandler)
+    print(f"🌐 Dummy server started on port {port} for Render health check")
+    server.serve_forever()
+
+threading.Thread(target=start_dummy_server, daemon=True).start()
+
 async def main():
     bot = Bot(token=settings.BOT_TOKEN)
     dp = Dispatcher()
     
-    # Подключаем middleware
     dp.message.middleware(LoggingMiddleware())
     dp.callback_query.middleware(LoggingMiddleware())
     
-    # Регистрируем роутеры
     dp.include_router(start.router)
     dp.include_router(routing.router)
     dp.include_router(appointment.router)

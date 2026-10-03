@@ -1,4 +1,4 @@
-# --- Python ---
+# Python
 venv/
 __pycache__/
 *.pyc
@@ -7,11 +7,11 @@ __pycache__/
 .Python
 *.so
 
-# --- Secrets (Токен бота) ---
+# Secrets
 .env
 .env.local
 
-# --- IDE & OS ---
+# IDE & OS
 .idea/
 .vscode/
 *.swp

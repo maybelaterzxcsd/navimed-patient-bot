@@ -4,7 +4,6 @@ from keyboards.inline import get_back_keyboard
 
 router = Router()
 
-# Моковые данные (в реальности берутся из БД)
 PATIENT_PLANS = {
     "1": [
         "1. Завтра, 10:00 — Первичная консультация онколога-маммолога",

@@ -51,7 +51,7 @@ Telegram-бот для демонстрации пациентского инт�
 
 ```bash
 # 1. Клонируем репозиторий
-git clone <repo-url>
+git clone https://github.com/maybelaterzxcsd/navimed-patient-bot
 cd medmind-bot
 
 # 2. Создаем виртуальное окружение

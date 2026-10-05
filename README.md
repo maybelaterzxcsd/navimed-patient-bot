@@ -49,35 +49,42 @@ Telegram-бот для демонстрации пациентского инт�
 
 ### Установка и запуск
 
+### 1. Клонируем репозиторий
 ```bash
-# 1. Клонируем репозиторий
 git clone https://github.com/maybelaterzxcsd/navimed-patient-bot
-cd medmind-bot
-
-# 2. Создаем виртуальное окружение
-python -m venv venv
-
-# Для Windows:
-venv\Scripts\activate
-# Для Mac/Linux:
-source venv/bin/activate
-
-# 3. Устанавливаем зависимости
-pip install -r requirements.txt
-
-# 4. Создаем файл окружения
-cp .env.example .env
-
-# 5. Открываем .env и вставляем токен бота
-# BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrsTUVwxyz
-# BACKEND_URL=http://localhost:8000
-
-# 6. Запускаем бота
-python bot.py
+cd navimed-patient-bot
 ```
 
-После запуска бот будет доступен в Telegram по username, который ты указала при создании через @BotFather.
+### 2. Создаем виртуальное окружение
+```bash
+python -m venv venv
+```
+Активируем его:
+- **Для Windows:** `venv\Scripts\activate`
+- **Для Mac/Linux:** `source venv/bin/activate`
 
+### 3. Устанавливаем зависимости
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Создаем файл окружения
+- **Для Windows:** `copy .env.example .env`
+- **Для Mac/Linux:** `cp .env.example .env`
+
+### 5. Настраиваем переменные окружения
+Откройте созданный файл `.env` в любом текстовом редакторе и вставьте ваш **реальный** токен бота (его нужно получить у [@BotFather](https://t.me/BotFather)):
+```env
+BOT_TOKEN=ваш_реальный_токен_от_BotFather
+BACKEND_URL=http://localhost:8000
+```
+
+### 6. Запускаем бота
+```bash
+python bot.py
+```
+После запуска бот будет доступен в Telegram по username, который вы указали при создании через @BotFather.
+```
 ---
 
 ##  Интеграция с MedMind API

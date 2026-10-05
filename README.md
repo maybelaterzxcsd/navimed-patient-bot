@@ -121,27 +121,29 @@ response = requests.post(
 
 ## Структура проекта
 
-```
-medmind-bot/
+```text
+medmind-patient-bot/
 ├── README.md                 # Документация
 ├── .env.example              # Шаблон переменных окружения
 ├── .gitignore
 ├── requirements.txt          # Зависимости Python
-├── bot.py                    # Основной файл бота (Aiogram)
-├── handlers/                 # Обработчики команд
+├── bot.py                    # Точка входа, инициализация бота и роутеров
+├── config.py                 # Настройки через pydantic-settings
+├── data/                     # Моковые данные пациентов
+│   └── patients.py
+├── handlers/                 # Обработчики команд (роутеры aiogram)
 │   ├── start.py              # /start, /help
-│   ├── route.py              # /route - получение маршрута
+│   ├── routing.py            # /route - получение маршрута
 │   ├── plan.py               # /plan - план наблюдения
-│   ├── questions.py          # /questions - вопросы к врачу
+│   ├── appointment.py        # Запись на прием
+│   ├── second_opinion.py     # Второе мнение
 │   └── share.py              # /share - Shared Care
-├── services/                 # Сервисный слой
-│   ├── api_client.py         # Клиент для MedMind API
-│   └── drip_scheduler.py     # Планировщик напоминаний
-├── utils/                    # Утилиты
-│   ├── message_formatter.py  # Форматирование сообщений
-│   └── logger.py             # Логирование
-└── tests/                    # Тесты
-    └── test_bot.py           # Заглушка тестов
+├── keyboards/                # Inline-клавиатуры
+│   └── inline.py
+├── middlewares/              # Промежуточное ПО
+│   └── logging.py            # Логирование действий
+└── utils/                    # Утилиты
+    └── text_formatter.py     # Форматирование текста для Telegram
 ```
 
 ---
